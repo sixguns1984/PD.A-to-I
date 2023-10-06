@@ -8,6 +8,8 @@
 #1.1 QC 
 # Tools: fastp (version 0.20.0)
 #Official documentation: https://github.com/OpenGene/fastp
+# input file : raw fastq file
+# output file : clean fastq
 bash 1.1.fastq.QC.sh
 #Parameter: 
 #raw_data.R1.fastq.gz/raw_data.R2.fastq.gz: raw RNA-seq fastq file
@@ -18,10 +20,14 @@ bash 1.1.fastq.QC.sh
 #        samtools (version 1.9)
 #Official documentation: https://github.com/alexdobin/STAR
 #Official documentation: https://github.com/samtools/samtools
+# input file : clean fastq file; hg19 genome fastq file
+# output file : bam file
 bash 1.2.STAR.alignment.sh
 #Parameter: --outFileNamePrefix XXX.Aligned.sortedByCoord.out.bam : Output the aligned BAM file.
 #           --readFilesIn clean_data.R1.fastq.gz clean_data.R2.fastq.gz : Input RNA-seq fastq files for alignment
-#Create an index file for the aligned bam file.
+#Create an index file for the aligned bam file
+# input file : bam file
+# output file : index file
 bash 1.3.index.sh
 
 
@@ -31,12 +37,14 @@ bash 1.3.index.sh
 #2.1Detection of A-to-I editing sites levels using RNA-seq data from the PPMI cohort
 # Tools: Query_Editing_Level.GRCh37.20161110.pl (version 20161110)
 #        perl (version v5.26.2)
+# input file : bam file for each sample
+# output file : A-to-I editing level files for each sample output
 bash 2.1.Quantification.sh
 #Parameter: 
 #Query_Editing_Level.GRCh37.20161110.pl: Perl code that quantifies the level of A-to-I editing sites.
 #rediportal_hg19.txt: rediportal database annotation data (http://srv00.recas.ba.infn.it/atlas/).
 #XXX.Aligned.sortedByCoord.out.bam: Input the name of the BAM file.
-#outfile: A-to-I editing level files for each sample output.
+
 
 #2.2 A-to-I editing sites levels QC and normalization
 # Tools: python (version v3.7.4)
@@ -72,6 +80,8 @@ Rscript 4.limma_findDAG.PDvsHC.R
 #       plink (version v1.90b6.20)
 #Official documentation: https://vcftools.github.io/
 #Official documentation: https://zzz.bwh.harvard.edu/plink/
+# input file : raw SNP genotype plink file
+# output file : SNP genotype plink file (Quality control)
 bash 5.1.SNP.QC.sh
 
 #5.2 eQTL

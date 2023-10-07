@@ -6,7 +6,8 @@
 ############################################################################################################################################
 #1. raw fastq file QC and alignment
 #1.1 QC 
-# Tools: fastp (version 0.20.0)
+# Tools: fastp (version v0.20.1)
+         FASTQC (version v0.11.8)
 #Official documentation: https://github.com/OpenGene/fastp
 # input file : raw fastq file
 # output file : clean fastq
@@ -16,8 +17,8 @@ bash 1.1.fastq.QC.sh
 #clean_data.R1.fastq.gz/clean_data.R2.fastq.gz: after quality control RNA-seq fastq file
 
 #1.2 alignment
-# Tools: STAR (version 2.7.5a)
-#        samtools (version 1.9)
+# Tools: STAR (version v2.7.5a)
+#        samtools (version v1.9)
 #Official documentation: https://github.com/alexdobin/STAR
 #Official documentation: https://github.com/samtools/samtools
 # input file : clean fastq file; hg19 genome fastq file
@@ -35,7 +36,7 @@ bash 1.3.index.sh
 ############################################################################################################################################
 #2.Quantification 
 #2.1Detection of A-to-I editing sites levels using RNA-seq data from the PPMI cohort
-# Tools: Query_Editing_Level.GRCh37.20161110.pl (version 20161110)
+# Tools: Query_Editing_Level.GRCh37.20161110.pl (version v20161110)
 #        perl (version v5.26.2)
 # input file : bam file for each sample
 # output file : A-to-I editing level files for each sample output
@@ -77,7 +78,7 @@ Rscript 4.limma_findDAG.PDvsHC.R
 #5.Cis-RNA editing quantitative trait loci analysis
 #5.1 snp genotype QC
 # Tools: vcftools (version v0.1.13)
-#       plink (version v1.90b6.20)
+#        plink (version v1.90b)
 #Official documentation: https://vcftools.github.io/
 #Official documentation: https://zzz.bwh.harvard.edu/plink/
 # input file : raw SNP genotype plink file
@@ -111,7 +112,7 @@ Rscript 6.1.TMR.R
 
 #6.2.summary data-based mendelian randomization(SMR) analysis
 #Official documentation: https://yanglab.westlake.edu.cn/software/smr/#Overview
-# Tools: smr (version v1.3.1)
+# Tools: smr (version v1.03)
 # input file : A-to-I editing eQTL Results;PD GWAS summary data(access for ieugwasr "ieu-b-7");SNP genotype (plink file)
 # output file : summary data-based mendelian randomization(SMR) analysis Results
 bash 6.2.smr.sh
@@ -121,6 +122,7 @@ bash 6.2.smr.sh
 ############################################################################################################################################
 #7.Longitudinal A-to-I editing changes associated with the progression of cognitive decline in Parkinson’s disease
 # Tools:  R (version v4.0.3)
+#         lme4 (version v1.1-26)
 # input file : normalized A-to-I editing sites levels matrix file (BL,V04,V06,V08); PPMI cohort Longitudinal clinical data (MocA, montreal cognitive assessment);covariate file
 # output file : Result of A-to-I editing sites associated with cognitive decline
 Rscript 7.longitudinal.R

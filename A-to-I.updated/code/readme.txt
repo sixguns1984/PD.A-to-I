@@ -16,7 +16,7 @@ bash 1.1.fastq.QC.sh
 #clean_data.R1.fastq.gz/clean_data.R2.fastq.gz: after quality control RNA-seq fastq file
 
 #1.2 alignment
-# Tools: STAR (version 2.7.3a)
+# Tools: STAR (version 2.7.5a)
 #        samtools (version 1.9)
 #Official documentation: https://github.com/alexdobin/STAR
 #Official documentation: https://github.com/samtools/samtools
